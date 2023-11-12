@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KillMonstr</string>
+    <string name="todo">TODO</string>
+    <string name="Tap">ЖМИ!</string>
+    <string name="time">Время</string>
+    <string name="score">Счёт</string>
+    <string name="healthbar">Здоровье</string>
+</resources>
