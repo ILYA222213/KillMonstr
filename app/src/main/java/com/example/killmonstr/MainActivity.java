@@ -10,12 +10,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class MainActivity extends AppCompatActivity {
-    private MediaPlayer zombieSound;
+
+    private ButtonDelegat delegat;
+    public void setDelegat(ButtonDelegat delegat){
+        this.delegat=delegat;
+    }
     private Integer counter = 0;
+
+    private Integer counterHP = 5000;
+    private Integer counterHPZoom= 1;
     private Integer counterbutton=1;
     TextView mTimerText;
     CountDownTimer timer;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,11 +34,58 @@ public class MainActivity extends AppCompatActivity {
         Button button_tap;
         button_tap = findViewById(R.id.button9);
 
-        zombieSound = MediaPlayer.create(this, R.raw.hit);
+        Button button = findViewById(R.id.button_s);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter = counter + counterbutton; // Увеличение значения счетчика на значение кнопки
+                TextView counterView = findViewById(R.id.scoreView);
+                counterView.setText(counter.toString());
+                if (counter < 100) {
+                    findViewById(R.id.button5).setEnabled(false);
+                } else {
+                    findViewById(R.id.button5).setEnabled(true);
+                }
+                if (counter < 180) {
+                    findViewById(R.id.button4).setEnabled(false);
+                } else {
+                    findViewById(R.id.button4).setEnabled(true);
+                }
+                if (counter < 250) {
+                    findViewById(R.id.button6).setEnabled(false);
+                } else {
+                    findViewById(R.id.button6).setEnabled(true);
+                }
+                if (counter < 350) {
+                    findViewById(R.id.button2).setEnabled(false);
+                } else {
+                    findViewById(R.id.button2).setEnabled(true);
+                }
+                if (counter < 440) {
+                    findViewById(R.id.button3).setEnabled(false);
+                } else {
+                    findViewById(R.id.button3).setEnabled(true);
+                }
+                if (counter < 500) {
+                    findViewById(R.id.button7).setEnabled(false);
+                } else {
+                    findViewById(R.id.button7).setEnabled(true);
+                }
+                if (delegat !=null){
+                    delegat.onSecondAction();
+                }
+                counterHP = counterHP - counterHPZoom;
+                TextView counterHp = findViewById(R.id.textView6);
+                counterHp.setText(counterHP.toString());
 
-        button_tap.setOnClickListener(v -> soundPlayButton(zombieSound));
+            }
+        });
+
+
 
         mTimerText = findViewById(R.id.textView4);
+
+
 
         if (counter <100){
             findViewById(R.id.button5).setEnabled(false);
@@ -51,8 +107,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         timer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long l) {
@@ -72,39 +126,7 @@ public class MainActivity extends AppCompatActivity {
         sound.start();
     }
     public void onClickBtnAddDex(View view) {
-        counter = counter + counterbutton; // Увеличение значения счетчика на значение кнопки
-        TextView counterView = findViewById(R.id.scoreView);
-        counterView.setText(counter.toString());
-        if (counter < 100) {
-            findViewById(R.id.button5).setEnabled(false);
-        } else {
-            findViewById(R.id.button5).setEnabled(true);
-        }
-        if (counter < 180) {
-            findViewById(R.id.button4).setEnabled(false);
-        } else {
-            findViewById(R.id.button4).setEnabled(true);
-        }
-        if (counter < 250) {
-            findViewById(R.id.button6).setEnabled(false);
-        } else {
-            findViewById(R.id.button6).setEnabled(true);
-        }
-        if (counter < 350) {
-            findViewById(R.id.button2).setEnabled(false);
-        } else {
-            findViewById(R.id.button2).setEnabled(true);
-        }
-        if (counter < 440) {
-            findViewById(R.id.button3).setEnabled(false);
-        } else {
-            findViewById(R.id.button3).setEnabled(true);
-        }
-        if (counter < 500) {
-            findViewById(R.id.button7).setEnabled(false);
-        } else {
-            findViewById(R.id.button7).setEnabled(true);
-        }
+
     }
 
     public void onClickBtn2AddDex(View view) {
@@ -163,5 +185,8 @@ public class MainActivity extends AppCompatActivity {
         if (counter < 180) {
             findViewById(R.id.button4).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
+
     }
+
+
 }
