@@ -14,7 +14,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="271dp"
         android:layout_marginBottom="60dp"
-        android:text="40=+20" />
+        android:onClick="onClickBtn5AddDex"
+        android:text="350=+20" />
 
     <Button
         android:id="@+id/button3"
@@ -24,7 +25,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
-        android:text="50=+25" />
+        android:onClick="onClickBtn6AddDex"
+        android:text="440=+25" />
 
     <Button
         android:id="@+id/button4"
@@ -34,7 +36,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="120dp"
-        android:text="20=+10" />
+        android:onClick="nClickBtn3AddDex"
+        android:text="180=+10" />
 
     <Button
         android:id="@+id/button5"
@@ -43,8 +46,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="273dp"
+        android:onClick="onClickBtn2AddDex"
         android:layout_marginBottom="120dp"
-        android:text="10=+5" />
+        android:text="100=+5" />
 
     <Button
         android:id="@+id/button6"
@@ -53,8 +57,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="17dp"
+        android:onClick="onClickBtn4AddDex"
         android:layout_marginBottom="120dp"
-        android:text="30=+15" />
+        android:text="250=+15" />
 
     <Button
         android:id="@+id/button7"
@@ -64,7 +69,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="17dp"
         android:layout_marginBottom="60dp"
-        android:text="60=+30" />
+        android:onClick="onClickBtn7AddDex"
+        android:text="500=+30" />
 
     <TextView
         android:id="@+id/textView2"
@@ -83,8 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="265dp"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="297dp"
         android:text="@string/score"
         android:textSize="20dp" />
 
@@ -94,8 +100,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="196dp"
-        android:layout_marginBottom="243dp"
+        android:layout_marginEnd="198dp"
+        android:layout_marginBottom="270dp"
         android:text="0" />
 
     <TextView
@@ -106,8 +112,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="183dp"
         android:layout_marginBottom="682dp"
-        android:textColor="@color/red"
         android:text="TextView"
+        android:textColor="@color/red"
         android:textSize="20dp" />
 
     <TextView
@@ -116,8 +122,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="631dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="653dp"
         android:text="@string/healthbar"
         android:textSize="20dp" />
 
@@ -127,32 +133,45 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="174dp"
-        android:layout_marginBottom="598dp"
+        android:layout_marginEnd="181dp"
+        android:layout_marginBottom="628dp"
         android:text="TextView" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/zombie"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="290dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="326dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/app_name"
         android:scaleType="centerInside"
-
         app:srcCompat="@drawable/monstr" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="188dp"
-        android:text="Жми!" />
+        android:onClick="onClickBtnAddDex"
+
+        android:layout_marginBottom="198dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/nocolor"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="457dp"
+        android:text="" />
+
 
 </RelativeLayout>
