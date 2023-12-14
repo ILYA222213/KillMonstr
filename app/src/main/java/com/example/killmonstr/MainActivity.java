@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         counterbutton =+5; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
+
         if (counter < 100) {
             findViewById(R.id.button5).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickBtn4AddDex(View view) {
         counter = counter - 250; // Уменьшение значения счетчика на 10
-        counterbutton =+15; // Увеличение значения кнопки на 10
+        counterbutton =+15 + counterbutton; // Увеличение значения кнопки на 10
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
         if (counter < 250) {
@@ -151,16 +152,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickBtn5AddDex(View view) {
         counter = counter - 350; // Уменьшение значения счетчика на 10
-        counterbutton =+20; // Увеличение значения кнопки на 5
+        counterbutton =+20 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
+
         if (counter < 350) {
             findViewById(R.id.button2).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
     }
     public void onClickBtn6AddDex(View view) {
         counter = counter - 440; // Уменьшение значения счетчика на 10
-        counterbutton =+25; // Увеличение значения кнопки на 5
+        counterbutton =+25 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
         if (counter < 440) {
@@ -169,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickBtn7AddDex(View view) {
         counter = counter - 500; // Уменьшение значения счетчика на 10
-        counterbutton =+30; // Увеличение значения кнопки на 5
+        counterbutton =+30 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
         if (counter < 500) {
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void nClickBtn3AddDex(View view) {
         counter = counter - 180; // Уменьшение значения счетчика на 10
-        counterbutton =+10; // Увеличение значения кнопки на 5
+        counterbutton =+10 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
         if (counter < 180) {
