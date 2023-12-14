@@ -1,6 +1,7 @@
 package com.example.killmonstr;
 
 import android.annotation.SuppressLint;
+import android.app.AutomaticZenRule;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                counter = counter + counterbutton; // Увеличение значения счетчика на значение кнопки
+                counter = counter + counterbutton;// Увеличение значения счетчика на значение кнопки
                 TextView counterView = findViewById(R.id.scoreView);
                 counterView.setText(counter.toString());
                 if (counter < 100) {
@@ -109,22 +110,21 @@ public class MainActivity extends AppCompatActivity {
 
         timer = new CountDownTimer(60000, 1000) {
             @Override
-            public void onTick(long l) {
-                mTimerText.setText("" + l / 1000);
+            public void onTick(long time) {
+                mTimerText.setText("" + time / 1000);
             }
 
             @Override
             public void onFinish() {
                 mTimerText.setText("End");
+
             }
+
         }.start();
     }
 
 
 
-    private void soundPlayButton(MediaPlayer sound) {
-        sound.start();
-    }
     public void onClickBtnAddDex(View view) {
 
     }
@@ -137,11 +137,12 @@ public class MainActivity extends AppCompatActivity {
         if (counter < 100) {
             findViewById(R.id.button5).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
+
     }
 
     public void onClickBtn4AddDex(View view) {
         counter = counter - 250; // Уменьшение значения счетчика на 10
-        counterbutton =+15; // Увеличение значения кнопки на 5
+        counterbutton =+15; // Увеличение значения кнопки на 10
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
         if (counter < 250) {
@@ -187,6 +188,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
