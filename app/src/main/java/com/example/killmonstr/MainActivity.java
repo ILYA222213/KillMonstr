@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private Integer counter = 0;
 
-    private Integer counterHP = 50;
+    private Integer counterHP = 5000;
     private Integer counterHPZoom= 1;
     private Integer counterbutton=1;
     TextView mTimerText;
@@ -76,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
                 if (delegat !=null){
                     delegat.onSecondAction();
                 }
-                counterHP = counterHP - counterHPZoom;
+                counterHP = counterHP - counterbutton;
                 TextView counterHp = findViewById(R.id.textView6);
                 counterHp.setText(counterHP.toString());
 
-                if (counterHP ==0) {
+                if (counterHP <=0) {
                     Toast.makeText(MainActivity.this, "Вы выиграли!", Toast.LENGTH_SHORT).show();
                     button.setEnabled(false);
                 }
@@ -124,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 mTimerText.setText("End");
                 findViewById(R.id.button_s).setEnabled(false);
+                if (counterHP <=0) {
+
+                }
 
             }
 
@@ -142,9 +145,7 @@ public class MainActivity extends AppCompatActivity {
         counterbutton =+5 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
-
-        TextView counterHp = findViewById(R.id.textView6);
-
+        counterHPZoom =- counterbutton ;
         if (counter < 100) {
             findViewById(R.id.button5).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
