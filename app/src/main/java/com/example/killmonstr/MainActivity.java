@@ -117,8 +117,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerText.setText("End");
+                findViewById(R.id.button_s).setEnabled(false);
 
             }
+
 
         }.start();
     }
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickBtn2AddDex(View view) {
         counter = counter - 100; // Уменьшение значения счетчика на 10
-        counterbutton =+5; // Увеличение значения кнопки на 5
+        counterbutton =+5 + counterbutton; // Увеличение значения кнопки на 5
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
 
