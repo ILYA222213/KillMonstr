@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private Integer counter = 0;
 
-    private Integer counterHP = 5000;
+    private Integer counterHP = 50;
     private Integer counterHPZoom= 1;
     private Integer counterbutton=1;
     TextView mTimerText;
@@ -78,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 counterHP = counterHP - counterHPZoom;
                 TextView counterHp = findViewById(R.id.textView6);
                 counterHp.setText(counterHP.toString());
+
+                if (counterHP ==0) {
+                    Toast.makeText(MainActivity.this, "Вы выиграли!", Toast.LENGTH_SHORT).show();
+                    button.setEnabled(false);
+                }
 
             }
         });
@@ -137,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
 
+        TextView counterHp = findViewById(R.id.textView6);
+
         if (counter < 100) {
             findViewById(R.id.button5).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
@@ -148,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         counterbutton =+15 + counterbutton; // Увеличение значения кнопки на 10
         TextView counterView = findViewById(R.id.scoreView);
         counterView.setText(counter.toString());
+
         if (counter < 250) {
             findViewById(R.id.button6).setEnabled(false); // Выключение кнопки, если значение счетчика меньше 10
         }
