@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -172,7 +174,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="138dp"
         android:layout_marginBottom="457dp"
-        android:text="" />
+        android:text=""></Button>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:name="com.example.killmonstr.BlankFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
+

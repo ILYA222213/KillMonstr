@@ -82,13 +82,27 @@ public class MainActivity extends AppCompatActivity {
 
                 if (counterHP <=0) {
                     Toast.makeText(MainActivity.this, "Вы выиграли!", Toast.LENGTH_SHORT).show();//вывод сообщения о победе
-                    button.setEnabled(false); //блокировка кнопки после победы
+                    findViewById(R.id.button_s).setEnabled(false);
+                    findViewById(R.id.button5).setEnabled(false);
+                    findViewById(R.id.button4).setEnabled(false);
+                    findViewById(R.id.button7).setEnabled(false);
+                    findViewById(R.id.button3).setEnabled(false);
+                    findViewById(R.id.button6).setEnabled(false);
+                    findViewById(R.id.button2).setEnabled(false);
+
+                    if (counterHP <=50) {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, new BlankFragment())
+                                .addToBackStack(null)
+                                .commit();
+
+                    }
+
                 }
 
             }
         });
         mTimerText = findViewById(R.id.textView4);
-
 
 
         if (counter <100){
@@ -111,10 +125,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        timer = new CountDownTimer(60000, 1000) {
+        timer = new CountDownTimer(40000, 1000) {
             @Override
             public void onTick(long time) {
                 mTimerText.setText("" + time / 1000);
+                if (counterHP <=50){
+                    cancel();
+                }
             }
 
             @Override
