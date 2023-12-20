@@ -4,23 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".BlankFragment">
+    tools:context=".LoseFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/cat" />
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Победа!"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="90dp"
-        android:textStyle="bold|italic" />
+        android:layout_height="match_parent"
+        android:text="@string/lose"
+        android:textSize="63dp"
+        android:textColor="@color/black"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ca"/>
+
 </FrameLayout>

@@ -3,6 +3,8 @@ package com.example.killmonstr;
 import android.annotation.SuppressLint;
 import android.app.AutomaticZenRule;
 import android.media.MediaPlayer;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -20,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         this.delegat=delegat;
     }
     private Integer counter = 0;
-
+    private Boolean flag = true;
+    private int mCounter;
+    private TextView mInfoTextView;
     private Integer counterHP = 5000;
     private Integer counterHPZoom= 1;
     private Integer counterbutton=1;
@@ -35,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button button_tap;
         button_tap = findViewById(R.id.button9);
-
         Button button = findViewById(R.id.button_s);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mInfoTextView = (TextView) findViewById(R.id.textViewInfo);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,27 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     findViewById(R.id.button7).setEnabled(true);
                 }
-                if (delegat !=null){
+                if (delegat != null) {
                     delegat.onSecondAction();
                 }
                 counterHP = counterHP - counterbutton;
                 TextView counterHp = findViewById(R.id.textView6);
                 counterHp.setText(counterHP.toString());
 
-                if (counterHP <=0) {
+                if (counterHP <= 0) {
                     Toast.makeText(MainActivity.this, "Вы выиграли!", Toast.LENGTH_SHORT).show();//вывод сообщения о победе
-                    findViewById(R.id.button_s).setEnabled(false);
-                    findViewById(R.id.button5).setEnabled(false);
-                    findViewById(R.id.button4).setEnabled(false);
-                    findViewById(R.id.button7).setEnabled(false);
-                    findViewById(R.id.button3).setEnabled(false);
-                    findViewById(R.id.button6).setEnabled(false);
-                    findViewById(R.id.button2).setEnabled(false);
 
-                    if (counterHP <=50) {
+
+                    if (counterHP <= 50) {
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container, new BlankFragment())
-                                .addToBackStack(null)
+                                .setReorderingAllowed(true)
+                                .add(R.id.fragment_container_view, BlankFragment.class, null)
                                 .commit();
 
                     }
@@ -102,52 +101,51 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
         mTimerText = findViewById(R.id.textView4);
-
-
-        if (counter <100){
+        if (counter < 100) {
             findViewById(R.id.button5).setEnabled(false);
         }
-        if (counter < 180){
+        if (counter < 180) {
             findViewById(R.id.button4).setEnabled(false);
         }
-        if (counter < 250){
+        if (counter < 250) {
             findViewById(R.id.button6).setEnabled(false);
         }
-        if (counter < 350){
+        if (counter < 350) {
             findViewById(R.id.button2).setEnabled(false);
         }
-        if (counter < 440){
+        if (counter < 440) {
             findViewById(R.id.button3).setEnabled(false);
         }
-        if (counter < 500){
+        if (counter < 500) {
             findViewById(R.id.button7).setEnabled(false);
         }
 
 
-        timer = new CountDownTimer(40000, 1000) {
-            @Override
-            public void onTick(long time) {
-                mTimerText.setText("" + time / 1000);
-                if (counterHP <=50){
-                    cancel();
+        if (flag) {
+            timer = new CountDownTimer(60000, 1000) {
+                @Override
+                public void onTick(long time) {
+                    mTimerText.setText("" + time / 1000);
+                    if (counterHP <= 0) {
+                        cancel();
+                    }
                 }
-            }
 
-            @Override
-            public void onFinish() {
-                mTimerText.setText("End");
-                findViewById(R.id.button_s).setEnabled(false);
-                findViewById(R.id.button5).setEnabled(false);
-                findViewById(R.id.button4).setEnabled(false);
-                findViewById(R.id.button7).setEnabled(false);
-                findViewById(R.id.button3).setEnabled(false);
-                findViewById(R.id.button6).setEnabled(false);
-                findViewById(R.id.button2).setEnabled(false);
-            }
+                @Override
+                public void onFinish() {
+                    mTimerText.setText("End");
 
-
-        }.start();
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .add(R.id.fragment_container_view, LoseFragment.class, null)
+                            .commit();
+                }
+            }.start();
+        }
+        flag =false;
     }
 
 
@@ -219,4 +217,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // имя файла настройки
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_COUNTER = "counter";
+    private SharedPreferences mSettings;
+
+
+    public void onClick(View v) {
+        // Выводим на экран
+        mInfoTextView.setText("Победы " + ++mCounter + " ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
+            // Получаем число из настроек
+            mCounter = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
+            // Выводим на экран данные из настроек
+            mInfoTextView.setText("Победы "
+                    + mCounter +"");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Запоминаем данные
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
+        editor.apply();
+    }
 }

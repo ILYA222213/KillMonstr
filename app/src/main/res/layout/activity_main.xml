@@ -176,9 +176,29 @@
         android:layout_marginBottom="457dp"
         android:text=""></Button>
 
+    <Button
+        android:id="@+id/buttonAttemptsCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Победы" />
+
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="225dp"
+        android:layout_marginBottom="708dp"
+        android:text="" />
+
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
-        android:name="com.example.killmonstr.BlankFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
