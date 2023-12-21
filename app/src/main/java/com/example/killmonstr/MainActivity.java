@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BlankFragment.OnFragmentListener{
 
     private ButtonDelegat delegat;
     public void setDelegat(ButtonDelegat delegat){
@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Integer counter = 0;
     private Boolean flag = true;
     private int mCounter;
+    public static Integer wins;
     private TextView mInfoTextView;
     private Integer counterHP = 5000;
     private Integer counterHPZoom= 1;
@@ -39,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button button = findViewById(R.id.button_s);
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); // получение настроек приложения
-        mInfoTextView = (TextView) findViewById(R.id.textViewInfo);
+
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); // получение настроек приложения
+        wins = mSettings.getInt(APP_PREFERENCES_COUNTER,0);
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putInt(APP_PREFERENCES_COUNTER, 0);
+        editor.apply();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 TextView counterHp = findViewById(R.id.textView6);
                 counterHp.setText(counterHP.toString());
 
+
                     if (counterHP <= 50) {
+                        wins ++;
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putInt(APP_PREFERENCES_COUNTER, wins);
+                        editor.apply();
                         getSupportFragmentManager().beginTransaction()
                                 .setReorderingAllowed(true)
                                 .add(R.id.fragment_container_view, BlankFragment.class, null)
                                 .commit();
+                        findViewById(R.id.button_s).setEnabled(false);
 
                     }
 
@@ -119,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (flag) {
-            timer = new CountDownTimer(40000, 1000) {
+            timer = new CountDownTimer(60000, 1000) {
                 @Override
                 public void onTick(long time) {
                     mTimerText.setText("" + time / 1000);
@@ -215,32 +227,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_COUNTER = "counter";
     private SharedPreferences mSettings;
-
-
-    public void onClick(View v) {
-        // Выводим на экран
-        mInfoTextView.setText("Победы " + ++mCounter + " ");
-    }
-
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
-            // Получаем число из настроек
-            mCounter = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
-            // Выводим на экран данные из настроек
-            mInfoTextView.setText("Победы "
-                    + mCounter +"");
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Запоминаем данные
+    public void SaveNull() {
+        wins = 0;
         SharedPreferences.Editor editor = mSettings.edit();
-        editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
+        editor.putInt(APP_PREFERENCES_COUNTER, wins);
         editor.apply();
     }
+
 }

@@ -98,13 +98,14 @@
 
     <TextView
         android:id="@+id/scoreView"
-        android:layout_width="wrap_content"
+        android:layout_width="76dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="188dp"
+        android:layout_marginEnd="159dp"
         android:layout_marginBottom="268dp"
         android:text="0"
+        android:textAlignment="center"
         android:textSize="20dp" />
 
     <TextView
@@ -165,27 +166,6 @@
         android:onClick="onClickBtnAddDex"
         android:text="Жми" />
 
-
-
-    <Button
-        android:id="@+id/buttonAttemptsCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Победы" />
-
-
-    <TextView
-        android:id="@+id/textViewInfo"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="225dp"
-        android:layout_marginBottom="708dp"
-        android:text="" />
 
     <androidx.fragment.app.FragmentContainerView
         xmlns:android="http://schemas.android.com/apk/res/android"
