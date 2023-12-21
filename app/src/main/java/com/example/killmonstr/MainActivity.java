@@ -37,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button_tap;
-        button_tap = findViewById(R.id.button9);
         Button button = findViewById(R.id.button_s);
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); // получение настроек приложения
         mInfoTextView = (TextView) findViewById(R.id.textViewInfo);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,10 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 TextView counterHp = findViewById(R.id.textView6);
                 counterHp.setText(counterHP.toString());
 
-                if (counterHP <= 0) {
-                    Toast.makeText(MainActivity.this, "Вы выиграли!", Toast.LENGTH_SHORT).show();//вывод сообщения о победе
-
-
                     if (counterHP <= 50) {
                         getSupportFragmentManager().beginTransaction()
                                 .setReorderingAllowed(true)
@@ -99,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-            }
+
         });
 
 
@@ -125,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (flag) {
-            timer = new CountDownTimer(60000, 1000) {
+            timer = new CountDownTimer(40000, 1000) {
                 @Override
                 public void onTick(long time) {
                     mTimerText.setText("" + time / 1000);
